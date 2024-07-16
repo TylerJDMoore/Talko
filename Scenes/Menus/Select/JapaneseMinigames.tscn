@@ -56,12 +56,12 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Kanji to furigana"
 script = ExtResource("2_hi7vv")
-target_scene = "res://Scenes/Menus/MultipleChoice.tscn"
 
 [node name="Button3" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Furigana to kanji (🔊 optional)"
 script = ExtResource("2_hi7vv")
+target_scene = "res://Scenes/Menus/MultipleChoice.tscn"
 
 [node name="Button" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

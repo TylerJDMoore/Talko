@@ -65,16 +65,15 @@ func _init_db():
     database.create_table("multiple_choice", table) #TODO configureable table name, so can have diff minigames per category. and maybe there's an "all" category
     database.query("CREATE INDEX IF NOT EXISTS idx_proficiency ON multiple_choice (proficiency)")
 
-    database.insert_row("multiple_choice", make_question("ねこ", "猫", "犬", "狼", "大")) # TODO populate db, but only once. dont rely on unique failure
-    database.insert_row("multiple_choice", make_question("0ねこ", "猫", "脳", "狼", "惱"))
-    database.insert_row("multiple_choice", make_question("1ねこ", "猫", "脳", "狼", "惱"))
-    database.insert_row("multiple_choice", make_question("2ねこ", "猫", "脳", "狼", "惱"))
-    database.insert_row("multiple_choice", make_question("3ねこ", "猫", "脳", "狼", "惱"))
-    database.insert_row("multiple_choice", make_question("4ねこ", "猫", "脳", "狼", "惱"))
-    database.insert_row("multiple_choice", make_question("5ねこ", "猫", "脳", "狼", "惱"))
-    database.insert_row("multiple_choice", make_question("5ねこ", "猫", "脳", "狼", "惱"))
-    database.insert_row("multiple_choice", make_question("5ねこ", "猫", "脳", "狼", "惱"))
-    database.insert_row("multiple_choice", make_question("5ねこ", "猫", "脳", "狼", "惱"))
+    database.insert_row("multiple_choice", make_question("ねこ", "猫", "犬", "狼", "描")) # TODO populate db, but only once. dont rely on unique failure. maybe there should be a set? one q for visually similar and one for not? would need to manually assign id and remove unique for question. maybe a speech to text where you ahve to say the kanji
+    database.insert_row("multiple_choice", make_question("いぬ", "犬", "天", "汰", "大"))
+    database.insert_row("multiple_choice", make_question("いちじ", "一時", "一語", "一間", "一円"))
+    database.insert_row("multiple_choice", make_question("いち", "一", "二", "三", "千"))
+    database.insert_row("multiple_choice", make_question("", "", "", "", ""))
+    database.insert_row("multiple_choice", make_question("", "", "", "", ""))
+    database.insert_row("multiple_choice", make_question("", "", "", "", ""))
+    database.insert_row("multiple_choice", make_question("", "", "", "", ""))
+    database.insert_row("multiple_choice", make_question("", "", "", "", ""))
 
 
 func make_question(question: String, answer: String, incorrect_0: String, incorrect_1: String, incorrect_2: String) -> Dictionary:
@@ -93,14 +92,14 @@ func _initialize_minigame():
     
     var row_count = database.query_result[0]["rows_with_proficiency"]
     var avg_proficiency = database.query_result[0]["average_proficiency"]
-    var questions_to_add: int = 0 #TODO
+    var questions_to_add: int = 0
     if (row_count < questions_per_set):
         questions_to_add = questions_per_set - row_count
     elif database.query_result[0]["average_proficiency"] >= threshold:
         questions_to_add = find_min_to_add(database.query_result[0]["rows_with_proficiency"], avg_proficiency)
 
     if (questions_to_add > 0):
-        #TODO athreshold should maybe be lower?
+        #TODO threshold should maybe be lower?
         var new_proficiency_query: String = "WITH RankedRows AS (SELECT id, ROW_NUMBER() OVER (ORDER BY id) AS row_num FROM multiple_choice WHERE proficiency IS NULL) UPDATE multiple_choice SET proficiency = %s WHERE id IN (SELECT id FROM RankedRows WHERE row_num <= %s)" % [default_proficiency, questions_to_add]
         database.query(new_proficiency_query)
 
@@ -108,6 +107,7 @@ func _initialize_minigame():
     database.query(query)
     
     proficiencies = {}
+    database.query_result.shuffle() #TODO why isnt this working
     var result: Array[Dictionary] = database.query_result
     for elem in result:
         proficiencies[elem["id"]] = elem["proficiency"]
@@ -210,3 +210,4 @@ func _record_result():
 #TODO this app doesnt handle concurrancies. not an issue for now, since it only uses sqlite. will need transaction locking in future?
 #TODo check for success on all queries, some queries can be directly get/update etc, instead of just query
 #TOdo add time decay?
+#TODO sql error out of memory?
