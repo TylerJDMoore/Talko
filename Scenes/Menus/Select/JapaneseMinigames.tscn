@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8abn6xiuyj2v"]
+
+[ext_resource type="FontFile" uid="uid://bvfjdhs7ns6os" path="res://twemoji.ttf" id="1_b2xho"]
+[ext_resource type="Script" path="res://Scripts/Entities/MinigamesEntity.gd" id="1_c20yw"]
+[ext_resource type="Script" path="res://Scripts/Entities/SelectMinigame.gd" id="2_hi7vv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2jyl"]
+font_size = 256
+
+[sub_resource type="LabelSettings" id="LabelSettings_1pn5i"]
+font_size = 48
+
+[node name="Japanese" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c20yw")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_b2xho")
+text = "🇯🇵"
+label_settings = SubResource("LabelSettings_d2jyl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "日本語"
+label_settings = SubResource("LabelSettings_1pn5i")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Kanji to furigana"
+script = ExtResource("2_hi7vv")
+target_scene = "res://Scenes/Menus/MultipleChoice.tscn"
+
+[node name="Button3" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Furigana to kanji (🔊 optional)"
+script = ExtResource("2_hi7vv")
+
+[node name="Button" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hiragana keyboard swipe trainer"
+script = ExtResource("2_hi7vv")
+target_scene = "res://Scenes/Minigames/Japanese/SwipeTrainer.tscn"
+
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Button2" to="ScrollContainer/MarginContainer/VBoxContainer/Button2" method="_on_pressed"]
+[connection signal="scene_transition_requested" from="ScrollContainer/MarginContainer/VBoxContainer/Button2" to="." method="_on_button_scene_transition_requested"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Button3" to="ScrollContainer/MarginContainer/VBoxContainer/Button3" method="_on_pressed"]
+[connection signal="scene_transition_requested" from="ScrollContainer/MarginContainer/VBoxContainer/Button3" to="." method="_on_button_scene_transition_requested"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Button" to="ScrollContainer/MarginContainer/VBoxContainer/Button" method="_on_pressed"]
+[connection signal="scene_transition_requested" from="ScrollContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_scene_transition_requested"]

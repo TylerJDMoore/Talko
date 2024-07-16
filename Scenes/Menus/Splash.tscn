@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://cng0bitry5h4p"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/SplashEntity.gd" id="1_fitmb"]
+[ext_resource type="FontFile" uid="uid://bvfjdhs7ns6os" path="res://twemoji.ttf" id="1_r4hko"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2jyl"]
+font_size = 256
+
+[sub_resource type="SystemFont" id="SystemFont_kxw3l"]
+font_names = PackedStringArray("Candy Round BTN")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjob1"]
+font = SubResource("SystemFont_kxw3l")
+font_size = 200
+
+[sub_resource type="Theme" id="Theme_8tc4r"]
+default_font = ExtResource("1_r4hko")
+default_font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_3vpie"]
+font = ExtResource("1_r4hko")
+font_size = 48
+
+[node name="Splash" type="Control" node_paths=PackedStringArray("dropdown", "label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fitmb")
+dropdown = NodePath("Control")
+label = NodePath("WelcomeText")
+minigame_select_scenes = Array[String](["res://Scenes/Menus/Select/JapaneseMinigames.tscn", "res://Scenes/Menus/Select/NorwegianMinigames.tscn"])
+
+[node name="Logo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 164.0
+offset_top = 312.0
+offset_right = 516.0
+offset_bottom = 661.0
+grow_horizontal = 2
+text = "🌮"
+label_settings = SubResource("LabelSettings_d2jyl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 164.0
+offset_top = 645.0
+offset_right = 516.0
+offset_bottom = 973.0
+grow_horizontal = 2
+text = "Talko"
+label_settings = SubResource("LabelSettings_qjob1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_8tc4r")
+
+[node name="OptionButton" type="OptionButton" parent="Control"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 924.0
+offset_right = 462.0
+offset_bottom = 971.0
+auto_translate = false
+item_count = 6
+popup/item_0/text = "🇯🇵 日本語"
+popup/item_0/id = 0
+popup/item_1/text = "🇳🇴 Norsk"
+popup/item_1/id = 1
+popup/item_2/text = "🇨🇴 Español"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+popup/item_3/text = "🇫🇷 Français"
+popup/item_3/id = 3
+popup/item_3/disabled = true
+popup/item_4/text = "🇰🇷 한국인"
+popup/item_4/id = 4
+popup/item_4/disabled = true
+popup/item_5/text = "🇨🇳 中文"
+popup/item_5/id = 5
+popup/item_5/disabled = true
+
+[node name="WelcomeText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 1067.0
+offset_right = 515.0
+offset_bottom = 1132.0
+text = "Tap anywhere"
+label_settings = SubResource("LabelSettings_3vpie")
+
+[connection signal="item_selected" from="Control/OptionButton" to="." method="_on_option_button_item_selected"]

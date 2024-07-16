@@ -1,0 +1,147 @@
+[gd_scene load_steps=4 format=3 uid="uid://npl123xl1nxm"]
+
+[ext_resource type="Script" path="res://Scripts/Minigames/MultipleChoice.gd" id="1_0nx27"]
+[ext_resource type="Script" path="res://Scripts/BackgroundFlash.gd" id="2_oqtbp"]
+
+[sub_resource type="Theme" id="Theme_45dx8"]
+default_font_size = 28
+
+[node name="MultipleChoice" type="Control" node_paths=PackedStringArray("bg_correct", "bg_incorrect", "buttons", "question_label", "progress")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_45dx8")
+script = ExtResource("1_0nx27")
+bg_correct = NodePath("BackgroundCorrect")
+bg_incorrect = NodePath("BackgroundIncorrect")
+buttons = [NodePath("GridContainer/MarginContainer/Answer0"), NodePath("GridContainer/MarginContainer2/Answer1"), NodePath("GridContainer/MarginContainer3/Answer2"), NodePath("GridContainer/MarginContainer4/Answer3")]
+question_label = NodePath("MarginContainer/Question")
+progress = NodePath("ProgressBar")
+
+[node name="BackgroundCorrect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0703366, 0.220846, 0.14322, 1)
+script = ExtResource("2_oqtbp")
+
+[node name="BackgroundIncorrect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.0313726, 0.0901961, 1)
+script = ExtResource("2_oqtbp")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.472
+offset_left = 320.0
+offset_top = 493.0
+offset_right = -319.0
+offset_bottom = -33.16
+text = "🔊"
+
+[node name="Mute" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 9.0
+offset_right = 702.0
+offset_bottom = 69.0
+text = "🔇"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.053
+anchor_right = 1.0
+anchor_bottom = 0.081
+offset_top = 0.159996
+offset_bottom = 0.32
+step = 0.001
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 446.0
+
+[node name="Question" type="Label" parent="MarginContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+offset_top = 733.0
+offset_right = 720.0
+offset_bottom = 1280.0
+columns = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Answer0" type="Button" parent="GridContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="Answer1" type="Button" parent="GridContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 24
+
+[node name="Answer2" type="Button" parent="GridContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer4" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Answer3" type="Button" parent="GridContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="GridContainer/MarginContainer/Answer0" to="." method="_on_answer_pressed" binds= [0]]
+[connection signal="pressed" from="GridContainer/MarginContainer2/Answer1" to="." method="_on_answer_pressed" binds= [1]]
+[connection signal="pressed" from="GridContainer/MarginContainer3/Answer2" to="." method="_on_answer_pressed" binds= [2]]
+[connection signal="pressed" from="GridContainer/MarginContainer4/Answer3" to="." method="_on_answer_pressed" binds= [3]]

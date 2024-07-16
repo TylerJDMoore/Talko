@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // https://github.com/godotengine/godot-vscode-plugin?tab=readme-ov-file#gdscript-debugger
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "GDScript: Launch Project",
+            "type": "godot",
+            "request": "launch",
+            "project": "${workspaceFolder}",
+            "debug_collisions": true,
+            "debug_paths": false,
+            "debug_navigation": false,
+            "time_scale": 1.0,
+            "address": "127.0.0.1",
+            "port": 6007,
+            "additional_options": "",
+        }
+    ]
+}

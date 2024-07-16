@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyf78xgvbd4af"]
+
+[ext_resource type="Script" path="res://Scripts/Minigames/SwipeTrainer.gd" id="1_aleo4"]
+
+[sub_resource type="FontFile" id="FontFile_c2gt1"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/72/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/156/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/256/0 = Vector2(0, 0)
+cache/0/72/0/ascent = 0.0
+cache/0/72/0/descent = 0.0
+cache/0/72/0/underline_position = 0.0
+cache/0/72/0/underline_thickness = 0.0
+cache/0/72/0/scale = 1.0
+cache/0/72/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/72/0/kerning_overrides/72/0 = Vector2(0, 0)
+cache/0/72/0/kerning_overrides/156/0 = Vector2(0, 0)
+cache/0/72/0/kerning_overrides/256/0 = Vector2(0, 0)
+cache/0/156/0/ascent = 0.0
+cache/0/156/0/descent = 0.0
+cache/0/156/0/underline_position = 0.0
+cache/0/156/0/underline_thickness = 0.0
+cache/0/156/0/scale = 1.0
+cache/0/156/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/156/0/kerning_overrides/72/0 = Vector2(0, 0)
+cache/0/156/0/kerning_overrides/156/0 = Vector2(0, 0)
+cache/0/156/0/kerning_overrides/256/0 = Vector2(0, 0)
+cache/0/256/0/ascent = 0.0
+cache/0/256/0/descent = 0.0
+cache/0/256/0/underline_position = 0.0
+cache/0/256/0/underline_thickness = 0.0
+cache/0/256/0/scale = 1.0
+cache/0/256/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/256/0/kerning_overrides/72/0 = Vector2(0, 0)
+cache/0/256/0/kerning_overrides/156/0 = Vector2(0, 0)
+cache/0/256/0/kerning_overrides/256/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pmnyr"]
+font = SubResource("FontFile_c2gt1")
+font_size = 256
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SwipeTrainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aleo4")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 180.0
+offset_top = 740.0
+offset_right = -180.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+placeholder_text = "Tap here"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+caret_multiple = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -640.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_pmnyr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="TextEdit" to="." method="_on_text_edit_focus_entered"]
+[connection signal="focus_exited" from="TextEdit" to="." method="_on_text_edit_focus_exited"]
+[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cehps14f5d5ar"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/MainEntity.gd" id="1_ko1vc"]
+
+[sub_resource type="Theme" id="Theme_45dx8"]
+default_font_size = 28
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_45dx8")
+script = ExtResource("1_ko1vc")
+initial_scene = "res://Scenes/Menus/Splash.tscn"
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188235, 0, 0.517647, 1)
