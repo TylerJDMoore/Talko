@@ -20,6 +20,7 @@ bg_incorrect = NodePath("BackgroundIncorrect")
 buttons = [NodePath("GridContainer/MarginContainer/Answer0"), NodePath("GridContainer/MarginContainer2/Answer1"), NodePath("GridContainer/MarginContainer3/Answer2"), NodePath("GridContainer/MarginContainer4/Answer3")]
 question_label = NodePath("MarginContainer/Question")
 progress = NodePath("ProgressBar")
+previous_scene = "res://Scenes/Menus/Select/JapaneseMinigames.tscn"
 
 [node name="BackgroundCorrect" type="ColorRect" parent="."]
 layout_mode = 1
