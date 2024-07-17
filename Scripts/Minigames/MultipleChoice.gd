@@ -204,10 +204,10 @@ func _record_result():
 
     for key in proficiencies:
         database.update_rows("multiple_choice", str("id = '", key, "'"), {"proficiency": proficiencies[key]})
-        database.close_db()
-        scene_transition_requested.emit(previous_scene)
+    
+    database.close_db()
+    scene_transition_requested.emit(previous_scene)
 
 #TODO this app doesnt handle concurrancies. not an issue for now, since it only uses sqlite. will need transaction locking in future?
 #TODo check for success on all queries, some queries can be directly get/update etc, instead of just query
 #TOdo add time decay?
-#TODO sql error out of memory?
